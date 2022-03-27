@@ -23,7 +23,7 @@ contract ERC20 is IERC20 {
         view
         virtual
         override
-        returns (uint256 balance)
+        returns (uint256)
     {
         return _balance[_owner];
     }
@@ -32,55 +32,40 @@ contract ERC20 is IERC20 {
         external
         virtual
         override
-        returns (bool success)
+        returns (bool)
     {
-        if (_value <= _balance[msg.sender]) {
-            _balance[_to] += _value;
-            success = true;
-            emit Transfer(msg.sender, _to, _value);
-        } else {
-            // throw error message
-            success = false;
-            revert();
-        }
+        require(_value <= _balance[msg.sender], "Error: Insufficient balance");
+        _balance[_to] += _value;
+        emit Transfer(msg.sender, _to, _value);
+        return true;
     }
 
     function transferFrom(
         address _from,
         address _to,
         uint256 _value
-    ) external virtual override returns (bool success) {
-        if (_value <= _allowence[msg.sender][_from]) {
-            _allowence[msg.sender][_from] -= _value;
-            _balance[_to] += _value;
-            success = true;
-            emit Transfer(_from, _to, _value);
-        } else {
-            // throw error message
-            success = false;
-            revert();
-        }
+    ) external virtual override returns (bool) {
+        require(_value <= _allowence[msg.sender][_from], "Error: Insufficient allowence");
+        _allowence[msg.sender][_from] -= _value;
+        _balance[_to] += _value;
+        emit Transfer(_from, _to, _value);
+        return true;
     }
 
     function approve(address _spender, uint256 _value)
         external
         virtual
         override
-        returns (bool success)
+        returns (bool)
     {
         // ERC20 API: An Attack Vector on Approve/TransferFrom Methods
         // https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/view
         // find solution for that
-        if (_value <= _balance[msg.sender]) {
-            _balance[msg.sender] -= _value;
-            _allowence[_spender][msg.sender] = _value;
-            success = true;
-            emit Approval(msg.sender, _spender, _value);
-        } else {
-            // throw error message
-            success = false;
-            revert();
-        }
+        require(_value <= _balance[msg.sender], "Error: Insufficient balance");
+        _balance[msg.sender] -= _value;
+        _allowence[_spender][msg.sender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
     }
 
     function allowance(address _owner, address _spender)
@@ -88,8 +73,8 @@ contract ERC20 is IERC20 {
         view
         virtual
         override
-        returns (uint256 remaining)
+        returns (uint256)
     {
-        remaining = _allowence[_spender][_owner];
+        return _allowence[_spender][_owner];
     }
 }

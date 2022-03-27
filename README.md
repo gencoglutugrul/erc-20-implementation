@@ -4,12 +4,12 @@ I will try to implement ERC-20 without looking another implementations. This imp
 
 # TO-DO
 
-- Implement: Function for minting
-- Implement: Optional functions (name, symbol, decimals)
-- Research: What is the best way to set totalSupply?
-- Fix: Attack vector on approve/transferFrom methods
-- Implement: Throw meaningful error messages. Use require instead of revert if possible.
-- Research: According to eip-20 standard when transfer failed MUST return false and also MUST throw an error.Is it possible to return false and throw error in same time?
+- ⬜️ Implement: Function for minting
+- ⬜️ Implement: Optional functions (name, symbol, decimals)
+- ⬜️ Research: What is the best way to set totalSupply?
+- ⬜️ Fix: Attack vector on approve/transferFrom methods
+- ✅ Implement: Throw meaningful error messages. Use require instead of revert if possible.
+- ✅ Research: According to eip-20 standard when transfer failed MUST return false and also MUST throw an error.Is it possible to return false and throw error in same time?
 
 # Resources
 
