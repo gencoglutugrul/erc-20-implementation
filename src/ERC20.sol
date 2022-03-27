@@ -13,11 +13,11 @@ contract ERC20 is IERC20 {
     string private _symbol;
     uint8 private _decimals;
 
-    constructor(uint256 __totalSupply, uint8 __decimals, string memory __name, string memory __symbol) {
+    constructor(uint8 __decimals, string memory __name, string memory __symbol) {
         _name = __name;
         _symbol = __symbol;
         _decimals = __decimals;
-        _totalSupply = __totalSupply;
+        _totalSupply = 0;
     }
 
     function name() external view returns(string memory){
@@ -34,6 +34,12 @@ contract ERC20 is IERC20 {
 
     function totalSupply() external view virtual override returns (uint256) {
         return _totalSupply;
+    }
+
+    function _mint(address _to, uint256 _value) internal returns(bool){
+        _totalSupply += _value;
+        _balance[_to] += _value;
+        return true;
     }
 
     function balanceOf(address _owner)
