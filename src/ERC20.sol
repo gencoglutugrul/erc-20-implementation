@@ -65,7 +65,9 @@ contract ERC20 is IERC20 {
         uint256 _value
     ) external virtual override returns (bool) {
         require(_value <= _allowence[msg.sender][_from], "Error: Insufficient allowence");
+        require(_value <= _balance[_from], "Error: Insufficient balance");
         _allowence[msg.sender][_from] -= _value;
+        _balance[_from] -= _value;
         _balance[_to] += _value;
         emit Transfer(_from, _to, _value);
         return true;
@@ -80,8 +82,6 @@ contract ERC20 is IERC20 {
         // ERC20 API: An Attack Vector on Approve/TransferFrom Methods
         // https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/view
         // find solution for that
-        require(_value <= _balance[msg.sender], "Error: Insufficient balance");
-        _balance[msg.sender] -= _value;
         _allowence[_spender][msg.sender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
