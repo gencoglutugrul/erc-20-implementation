@@ -9,9 +9,27 @@ contract ERC20 is IERC20 {
     // _spender => (_owner => _value)
     mapping(address => mapping(address => uint256)) _allowence;
     uint256 private _totalSupply;
+    string private _name;
+    string private _symbol;
+    uint8 private _decimals;
 
-    constructor(uint256 __totalSupply) {
+    constructor(uint256 __totalSupply, uint8 __decimals, string memory __name, string memory __symbol) {
+        _name = __name;
+        _symbol = __symbol;
+        _decimals = __decimals;
         _totalSupply = __totalSupply;
+    }
+
+    function name() external view returns(string memory){
+        return _name;
+    }
+
+    function symbol() external view returns(string memory){
+        return _symbol;
+    }
+
+    function decimals() external view returns(uint8){
+        return _decimals;
     }
 
     function totalSupply() external view virtual override returns (uint256) {
