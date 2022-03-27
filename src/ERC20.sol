@@ -53,6 +53,7 @@ contract ERC20 is IERC20 {
         returns (bool)
     {
         require(_value <= _balance[msg.sender], "Error: Insufficient balance");
+        _balance[msg.sender] -= _value;
         _balance[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
         return true;
