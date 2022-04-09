@@ -12,13 +12,21 @@ I will try to implement ERC-20 without looking another implementations. This imp
 - ⬜️ Fix: Attack vector on approve/transferFrom methods
 - ⬜️ Implement: Write tests for contracts.
 
-# Compile
+# Basic Sample Hardhat Project
 
-I am using remix for compiling and testing. You can connect remix to your localhost. For this you need to install first remixd tool. \
-`npm install -g @remix-project/remixd`
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
-`remixd -s /your/working/directory --remix-ide https://remix.ethereum.org` \
-Then open remix editor and select localhost on workspaces.
+Try running some of the following tasks:
+
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+node scripts/sample-script.js
+npx hardhat help
+```
 
 # Resources
 
