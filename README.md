@@ -8,9 +8,9 @@ I will try to implement ERC-20 without looking another implementations. This imp
 - ✅ Implement: Optional functions (name, symbol, decimals)
 - ✅ Research: According to eip-20 standard when transfer failed MUST return false and also MUST throw an error.Is it possible to return false and throw error in same time?
 - ✅ Implement: Throw meaningful error messages. Use require instead of revert if possible.
-- ⬜️ Research: What is the best way to set totalSupply?
+- ✅ Research: What is the best way to set totalSupply?
+- ✅ Implement: Write tests for contracts.
 - ⬜️ Fix: Attack vector on approve/transferFrom methods
-- ⬜️ Implement: Write tests for contracts.
 
 # Basic Sample Hardhat Project
 
