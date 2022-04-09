@@ -1,6 +1,6 @@
 # ERC 20 Implementation
 
-I will try to implement ERC-20 without looking another implementations. This implementation is for only educational purposes. Also i've never read another implementations.
+I will try to implement ERC-20 without looking another implementations. This implementation is for only educational purposes.
 
 # TO-DO
 
